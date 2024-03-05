@@ -27,31 +27,56 @@ docentes(1, "Davide Carneiro").
 docentes(2, "Óscar Oliveira").
 
 
-% estudantes(idEstudante, nome, idUCInscrita)
-estudantes(8200118, "Maria Dias", 2).
-estudantes(8200119, "Rui Dias", 1).
-estudantes(8200120, "Manuel Gomes", 2).
+% estudantes(id, idEstudante, nome, idUCInscrita)
+estudantes(1, 8200118, "Maria Dias", 2).
+estudantes(2, 8200119, "Rui Dias", 1).
+estudantes(3, 8200120, "Manuel Gomes", 2).
+estudantes(4, 8200119, "Rui Dias", 3).
 
 
-% uc(idUC, nome, ano, idCurso, idDocente)
-uc(1, "laboratório de programação", 1, 2, 2).
-uc(2, "inteligencia artificial", 3, 2, 1).
+% uc(idUC, nome, ano, idCurso)
+uc(1, "laboratório de programação", 1, 2).
+uc(2, "inteligencia artificial", 3, 2).
+uc(3, "projeto final", 3, 2).
 
+
+% ucDocentes(id, idUC, idDocente)
+ucDocentes(1, 2, 1).
+ucDocentes(2, 2, 2).
+ucDocentes(3, 1, 2).
+ucDocentes(4, 3, 1).
 
 
 %   1.2.    Realize queries à sua base de conhecimento, de forma a responder de forma positiva/negativa às seguintes questões:
-
 %           a) A ESTG pertence ao Politécnico do Porto?
 %               escolas(_, estg, ipp).
 
 %           b) LEI é um dos cursos lecionados na ESTG?
-%               cursos(_, _, lei, 1), escolas(1, _, _).
+%               cursos(2, _, _, _), escolas(1, _, _).
 
 %           c) Inteligência Artificial é uma unidade curricular do curso de LEI?
-% 				uc(_, "inteligencia artificial", _, 2, _), cursos(2, _, _, _).
+% 				uc(2, _, _, 2), cursos(2, _, _, _).
 
 %           d) Machine Learning é uma unidade curricular do curso de LEI?
-% 				uc(_, "Machine Learning", _, 2, _), cursos(2, _, _, _).
+% 				uc(_, "Machine Learning", _, 2), cursos(2, _, _, _).
 
 %           e) Laboratório de Programação faz parte do plano de estudos do 3º ano do curso de LEI?
-% 				uc(_, "laboratório de programação", 3, _, _).
+% 				uc(_, "laboratório de programação", 3, _).
+
+
+
+%	1.3. 	Realize queries à sua base de conhecimento, que lhe permitam obter respostas às seguintes questões:
+%			a) Quais são os cursos presentes na oferta curricular da ESTG?
+%				cursos(_, _, CURSO, 1), escolas(1, _, _).
+%			
+%			b) Que unidades curriculares fazem parte do plano de estudos do 3º ano do curso de LEI?
+%				uc(_, UC, 3, 2), cursos(2, _, _, _).
+%			
+%			c) Quem são os docentes que lecionam Inteligência Artificial?
+%				docentes(IDDOCENTE, NOMEDOCENTE), ucDocentes(_, 2, IDDOCENTE), uc(2, _, _, _).
+%			
+%			d) Quais são os alunos inscritos na unidade curricular de Inteligência Artificial? Guarde as possíveis alternativas numa lista. (a abordar futuramente)
+%				estudantes(_, _, NOMEESTUDANTE, 2), uc(2, _, _, _).
+%			
+% 			e) Quais são os alunos inscritos na unidade curricular de Inteligência Artificial ou Projeto Final?
+%				estudantes(_, _, NOMEESTUDANTE, 2); estudantes(_, _, NOMEESTUDANTE, 3).
